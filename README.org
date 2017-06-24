@@ -1,0 +1,36 @@
+#+TITLE: dotfiles - Joegle
+
+* Todo
+  + [ ] Setup
+  + [ ] git
+  + [ ] npm
+  + [ ] ssh
+  + [ ] bash
+  + [ ] dircolors
+  + [ ] urxvt
+  + [ ] iTerm
+  + [ ] Xresources
+  + List of software to install
+    + ripgrep
+    + tldr
+
+* Notes
+** Setup
+   + [[https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/][The best way to store your dotfiles: A bare Git repository]]
+   + Create a git tracking folder so that you don't have to use .git
+     : git init --bare .dotfiles-git
+   + But now you need to create an alias to always specify the git working tree
+     : alias config='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
+   + Mute all the untracked files 
+     : config config --local status.showUntrackedFiles no
+     
+** Secrets
+   + encrypt with password or key
+     : gpg --output out.gpg --symmetric example.txt
+   + gpg with key for public key
+     : gpg --output output.gpg --encrypt --recipient joegle@gmail.com example.txt
+   + decrypt with password or key
+     : gpg --homedir=.. --output clear.txt --decrypt secret.gpg
+** Multiple hosts
+   + [[https://superuser.com/questions/412384/different-bashrc-files-for-different-login-nodes/412385][different .bashrc files for different login nodes?]]
+
