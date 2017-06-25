@@ -2,7 +2,18 @@
 alias ll='ls -FGlAhp'
 
 [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh ] && .  /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
-PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
+
+function prompt_command {
+    # Define PS1 variables here
+    # https://stackoverflow.com/questions/3058325/what-is-the-difference-between-ps1-and-prompt-command
+
+    # log commands
+    if [ "$(id -u)" -ne 0 ]; then
+	echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log;
+    fi
+}
+export PROMPT_COMMAND=prompt_command
+
 
 # uncomment below to get cv2 to work in python
 #export PATH=/usr/local/bin:$PATH
